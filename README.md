@@ -136,6 +136,20 @@ Each card contains:
 - Scientific discovery and advancement emphasis
 - Peer-level technical language
 
+## Live Demo
+
+This project is deployed on GitHub Pages and can be viewed at:
+**https://rahulgh-stack.github.io/julius-usecase-landingpages/**
+
+All HTML pages are accessible directly:
+- Main index: https://rahulgh-stack.github.io/julius-usecase-landingpages/
+- Marketing: https://rahulgh-stack.github.io/julius-usecase-landingpages/marketing-usecase.html
+- Finance: https://rahulgh-stack.github.io/julius-usecase-landingpages/finance-usecase.html
+- Product: https://rahulgh-stack.github.io/julius-usecase-landingpages/product-usecase.html
+- Sales: https://rahulgh-stack.github.io/julius-usecase-landingpages/sales-usecase.html
+- Biology: https://rahulgh-stack.github.io/julius-usecase-landingpages/biology-usecase.html
+- Physics: https://rahulgh-stack.github.io/julius-usecase-landingpages/physics-usecase.html
+
 ## Next Steps
 
 To complete the implementation:
@@ -150,13 +164,15 @@ To complete the implementation:
 ```
 /redesign_julius_usecase_pages/
 ├── README.md                 # This documentation
+├── index.html                # Main landing page (GitHub Pages entry point)
 ├── marketing-usecase.html    # Marketing analytics page
 ├── finance-usecase.html      # Finance analytics page  
 ├── product-usecase.html      # Product analytics page
 ├── biology-usecase.html      # Biology research page
 ├── physics-usecase.html      # Physics research page
 ├── sales-usecase.html        # Sales analytics page
-└── CLAUDE.md                 # Project instructions and context
+├── .gitignore                # Git ignore file
+└── claude.md                 # Project instructions and context
 ```
 
 ## Design Principles Applied

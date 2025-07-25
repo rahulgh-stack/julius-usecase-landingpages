@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Analytics Without the Data Science Team | Julius AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.4;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007bff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .cta-button {
+            background: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #64748b;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .use-case-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .use-case-card {
+            background: #ffffff;
+            border-radius: 0.5rem;
+            padding: 3rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .use-case-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #007bff;
+        }
+
+        .use-case-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .use-case-icon {
+            width: 48px;
+            height: 48px;
+            background: #007bff;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .use-case-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-description {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .use-case-bullets {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .use-case-bullets li {
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .use-case-bullets li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .use-case-example {
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            border-left: 3px solid #007bff;
+            font-style: italic;
+            color: #4b5563;
+            margin-top: 1.5rem;
+        }
+
+        .use-case-screenshot {
+            background: #f8fafc;
+            border: 2px dashed #d1d5db;
+            border-radius: 0.5rem;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Interactive Demo Section */
+        .demo-section {
+            padding: 5rem 0;
+            background: #1e293b;
+            color: white;
+        }
+
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .demo-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-content p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .demo-steps {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .demo-steps li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background: #007bff;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .demo-visual {
+            background: #334155;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .demo-mockup {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: #1e293b;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 5rem 0;
+            background: #007bff;
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: white;
+            color: #007bff;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: #007bff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .demo-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .use-case-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .use-case-screenshot {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">Julius</div>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link">Product</a></li>
+                    <li><a href="#" class="nav-link">Use Cases</a></li>
+                    <li><a href="#" class="nav-link">Pricing</a></li>
+                    <li><a href="#" class="nav-link">Resources</a></li>
+                </ul>
+                <a href="#" class="cta-button">Get Started Free</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Product Analytics Without the Data Science Team</h1>
+            <p class="hero-subtitle">Transform your product data into clear insights that drive user engagement and growth. Get the analysis your team needs without the technical complexity.</p>
+            <a href="#" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Start Free Trial</a>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🧪</div>
+                        <h3 class="use-case-title">A/B Test Design and Analysis</h3>
+                        <p class="use-case-description">Compare different product features or designs to see which performs better with statistical confidence.</p>
+                        <ul class="use-case-bullets">
+                            <li>Split users into test and control groups automatically</li>
+                            <li>Calculate statistical significance and confidence intervals</li>
+                            <li>10-30% improvement in conversion rates through data-driven decisions</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Which checkout button design converts better - blue or green?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - A/B testing interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🔄</div>
+                        <h3 class="use-case-title">User Funnel Optimization</h3>
+                        <p class="use-case-description">Identify where users drop off in the product journey and fix bottlenecks to improve conversion.</p>
+                        <ul class="use-case-bullets">
+                            <li>Track user progression through each funnel step</li>
+                            <li>Identify factors that predict user drop-off</li>
+                            <li>15-40% increase in overall conversion by fixing bottlenecks</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Where are users dropping off in our signup flow?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Funnel analysis interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">👥</div>
+                        <h3 class="use-case-title">User Segmentation and Behavioral Analysis</h3>
+                        <p class="use-case-description">Group users based on behavior patterns to personalize experiences and improve engagement.</p>
+                        <ul class="use-case-bullets">
+                            <li>Automatically cluster users by activity and engagement patterns</li>
+                            <li>Create targeted experiences for each user segment</li>
+                            <li>20-50% improvement in engagement through personalization</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "What are the main user behavior patterns in our app?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - User segmentation interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">⚠️</div>
+                        <h3 class="use-case-title">Churn Prediction and Prevention</h3>
+                        <p class="use-case-description">Identify users likely to stop using the product before they actually leave so you can save them.</p>
+                        <ul class="use-case-bullets">
+                            <li>Score users daily based on activity patterns and engagement</li>
+                            <li>Trigger intervention campaigns for high-risk users</li>
+                            <li>25-60% reduction in churn through early intervention</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Which users are most likely to churn in the next 30 days?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Churn prediction interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">⚙️</div>
+                        <h3 class="use-case-title">Product Feature Usage Analytics</h3>
+                        <p class="use-case-description">Measure which features drive value and which should be improved or removed from your product.</p>
+                        <ul class="use-case-bullets">
+                            <li>Track feature adoption rates and usage patterns</li>
+                            <li>Correlate feature usage with retention and revenue</li>
+                            <li>30-70% improvement in development ROI by focusing on high-impact features</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Which features should we prioritize in our next development sprint?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Feature analytics interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">📊</div>
+                        <h3 class="use-case-title">Real-Time Product Performance Monitoring</h3>
+                        <p class="use-case-description">Automatically detect when product metrics deviate from expected patterns and get alerts.</p>
+                        <ul class="use-case-bullets">
+                            <li>Monitor key metrics with automated anomaly detection</li>
+                            <li>Get instant alerts when performance drops</li>
+                            <li>50-90% faster detection of issues and 80% reduction in user impact</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Alert me when our conversion rate drops below normal levels"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Performance monitoring interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">💎</div>
+                        <h3 class="use-case-title">Customer Lifetime Value by Product Usage</h3>
+                        <p class="use-case-description">Calculate how much revenue each user will generate based on their product behavior patterns.</p>
+                        <ul class="use-case-bullets">
+                            <li>Link product usage patterns to revenue predictions</li>
+                            <li>Factor in acquisition costs and feature development costs</li>
+                            <li>20-40% improvement in acquisition ROI and feature investment decisions</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "What's the lifetime value of users who engage with our new feature?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Product LTV interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🎯</div>
+                        <h3 class="use-case-title">Recommendation System Optimization</h3>
+                        <p class="use-case-description">Improve algorithms that suggest content, products, or actions to users based on their behavior.</p>
+                        <ul class="use-case-bullets">
+                            <li>Test different recommendation strategies automatically</li>
+                            <li>Balance showing popular content vs personalized suggestions</li>
+                            <li>15-35% increase in engagement and 10-25% revenue uplift</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How can we improve our content recommendation algorithm?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Recommendation optimization interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🔍</div>
+                        <h3 class="use-case-title">Product Search and Discovery Analytics</h3>
+                        <p class="use-case-description">Optimize how users find what they're looking for in your product to improve satisfaction.</p>
+                        <ul class="use-case-bullets">
+                            <li>Analyze search query patterns and success rates</li>
+                            <li>Track search-to-conversion funnels and identify failure points</li>
+                            <li>20-50% improvement in search success rates and user satisfaction</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Why aren't users finding what they search for in our app?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Search analytics interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">💰</div>
+                        <h3 class="use-case-title">Pricing and Monetization Optimization</h3>
+                        <p class="use-case-description">Find optimal pricing strategies based on user behavior and willingness to pay.</p>
+                        <ul class="use-case-bullets">
+                            <li>Test different pricing strategies on user segments</li>
+                            <li>Analyze freemium conversion rates and optimal upgrade timing</li>
+                            <li>5-20% revenue increase through optimized pricing strategies</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "What's the optimal price point for our premium subscription?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Pricing optimization interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🚀</div>
+                        <h3 class="use-case-title">User Onboarding Optimization</h3>
+                        <p class="use-case-description">Improve the new user experience to increase activation rates and long-term retention.</p>
+                        <ul class="use-case-bullets">
+                            <li>Track onboarding completion rates by user segment</li>
+                            <li>Test different onboarding flows and timing</li>
+                            <li>30-80% improvement in new user activation and retention</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How can we improve our new user onboarding experience?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Onboarding optimization interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">📈</div>
+                        <h3 class="use-case-title">Product Performance Forecasting</h3>
+                        <p class="use-case-description">Predict future product metrics to guide planning and resource allocation decisions.</p>
+                        <ul class="use-case-bullets">
+                            <li>Build models to forecast key product metrics</li>
+                            <li>Create scenario planning for different growth assumptions</li>
+                            <li>15-40% improvement in resource planning accuracy</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How many users will we have in 6 months based on current trends?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Product forecasting interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">📱</div>
+                        <h3 class="use-case-title">Cross-Platform User Journey Analysis</h3>
+                        <p class="use-case-description">Understand how users interact with your product across different devices and channels.</p>
+                        <ul class="use-case-bullets">
+                            <li>Link user activity across web, mobile, and other platforms</li>
+                            <li>Map complex user journeys and identify optimization opportunities</li>
+                            <li>20-50% improvement in cross-platform experience and conversion</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How do users move between our mobile app and website?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Cross-platform journey interface
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="demo-container">
+                <div class="demo-content">
+                    <h2>From Product Data to Growth Insights</h2>
+                    <p>See how product teams use analytics to make better decisions and improve user experience without needing a data science team.</p>
+                    
+                    <ul class="demo-steps">
+                        <li>
+                            <div class="step-number">1</div>
+                            <div>Connect your product data (events, user actions, metrics)</div>
+                        </li>
+                        <li>
+                            <div class="step-number">2</div>
+                            <div>Ask product questions in plain English</div>
+                        </li>
+                        <li>
+                            <div class="step-number">3</div>
+                            <div>Get clear insights with actionable recommendations</div>
+                        </li>
+                        <li>
+                            <div class="step-number">4</div>
+                            <div>Take action to improve user experience and growth</div>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="cta-button">Try Interactive Demo</a>
+                </div>
+
+                <div class="demo-visual">
+                    <div class="demo-mockup">
+                        <div style="background: #f1f5f9; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <strong>Question:</strong> "Which users are most likely to convert from free to paid?"
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left;">
+                            <div>
+                                <strong>High Intent Users</strong><br>
+                                <span style="color: #10b981;">1,247 users</span><br>
+                                <small>85% conversion probability</small>
+                            </div>
+                            <div>
+                                <strong>Medium Intent</strong><br>
+                                <span style="color: #f59e0b;">3,891 users</span><br>
+                                <small>34% conversion probability</small>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; padding: 1rem; background: #dbeafe; border-radius: 8px;">
+                            <strong>💡 Action:</strong> Target high-intent users with upgrade prompts and medium-intent users with feature education.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Product Teams Choose Julius</h2>
+                <p class="section-subtitle">Get the product insights you need to drive growth and improve user experience - without the data science complexity</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚀</div>
+                    <h3 class="benefit-title">No Data Science Team Needed</h3>
+                    <p class="benefit-description">Get product insights that typically require data scientists. Connect your data, ask questions, get answers.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📋</div>
+                    <h3 class="benefit-title">Actionable Product Insights</h3>
+                    <p class="benefit-description">Get specific recommendations you can implement immediately to improve user experience and growth.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔗</div>
+                    <h3 class="benefit-title">Works With Your Product Data</h3>
+                    <p class="benefit-description">Connect any data source: analytics tools, databases, event tracking, user feedback, A/B testing platforms.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3 class="benefit-title">Real-Time Product Intelligence</h3>
+                    <p class="benefit-description">Get insights in minutes, not weeks. Make product decisions based on current data, not outdated reports.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Start Making Better Product Decisions</h2>
+            <p>Join product teams who use data to drive growth and improve user experience - without the complexity</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="cta-primary">Start Free Trial</a>
+                <a href="#" class="cta-secondary">Book Product Demo</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

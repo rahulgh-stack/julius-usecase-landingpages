@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Biological Research using AI Data Scientist | Julius AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.4;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007bff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .cta-button {
+            background: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #64748b;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .use-case-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .use-case-card {
+            background: #ffffff;
+            border-radius: 0.5rem;
+            padding: 3rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .use-case-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #007bff;
+        }
+
+        .use-case-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .use-case-icon {
+            width: 48px;
+            height: 48px;
+            background: #007bff;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .use-case-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-description {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .use-case-bullets {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .use-case-bullets li {
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .use-case-bullets li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .use-case-example {
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            border-left: 3px solid #007bff;
+            font-style: italic;
+            color: #4b5563;
+            margin-top: 1.5rem;
+        }
+
+        .use-case-screenshot {
+            background: #f8fafc;
+            border: 2px dashed #d1d5db;
+            border-radius: 0.5rem;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Interactive Demo Section */
+        .demo-section {
+            padding: 5rem 0;
+            background: #1e293b;
+            color: white;
+        }
+
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .demo-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-content p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .demo-steps {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .demo-steps li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background: #007bff;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .demo-visual {
+            background: #334155;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .demo-mockup {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: #1e293b;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 5rem 0;
+            background: #007bff;
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: white;
+            color: #007bff;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: #007bff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .demo-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .use-case-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .use-case-screenshot {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">Julius</div>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link">Product</a></li>
+                    <li><a href="#" class="nav-link">Use Cases</a></li>
+                    <li><a href="#" class="nav-link">Pricing</a></li>
+                    <li><a href="#" class="nav-link">Resources</a></li>
+                </ul>
+                <a href="#" class="cta-button">Get Started Free</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Scientific Biological Research using AI Data Scientist</h1>
+            <p class="hero-subtitle">Accelerate biological discoveries with advanced computational analysis. Apply sophisticated data science methods to genomics, proteomics, and systems biology research.</p>
+            <a href="#" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Start Free Trial</a>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🧬</div>
+                        <h3 class="use-case-title">Gene Expression Analysis and Disease Prediction</h3>
+                        <p class="use-case-description">Identify which genes are active in diseased vs healthy tissue to predict and diagnose conditions.</p>
+                        <ul class="use-case-bullets">
+                            <li>Apply differential expression analysis with statistical tests</li>
+                            <li>Build classification models to predict disease from gene expression patterns</li>
+                            <li>60-80% accuracy in early disease detection and 30-50% improvement in treatment selection</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Which genes predict cancer recurrence in these patient samples?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Gene expression analysis interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">💊</div>
+                        <h3 class="use-case-title">Drug Discovery and Target Identification</h3>
+                        <p class="use-case-description">Find new drug targets and predict which compounds will be effective against diseases.</p>
+                        <ul class="use-case-bullets">
+                            <li>Apply machine learning to molecular structure data using neural networks</li>
+                            <li>Use similarity searches to identify potential drug candidates</li>
+                            <li>40-60% reduction in drug discovery time and 20-30% increase in success rates</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Which molecular compounds show the highest binding affinity to this protein target?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Drug discovery interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🔬</div>
+                        <h3 class="use-case-title">Protein Structure Prediction and Function Analysis</h3>
+                        <p class="use-case-description">Predict how proteins fold and what functions they perform based on their sequence.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use deep learning models on amino acid sequences</li>
+                            <li>Apply homology modeling for structure prediction</li>
+                            <li>70-90% accuracy in structure prediction enabling faster therapeutic development</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "What is the 3D structure and function of this unknown protein sequence?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Protein structure interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🧪</div>
+                        <h3 class="use-case-title">Genomic Variant Analysis for Personalized Medicine</h3>
+                        <p class="use-case-description">Identify genetic mutations that cause disease and predict treatment responses.</p>
+                        <ul class="use-case-bullets">
+                            <li>Apply variant calling algorithms to DNA sequencing data</li>
+                            <li>Build polygenic risk scores using regression models</li>
+                            <li>30-70% improvement in treatment efficacy through personalized therapy selection</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Which genetic variants predict drug response in this patient population?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Genomic variant analysis interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🦠</div>
+                        <h3 class="use-case-title">Microbiome Analysis for Health Assessment</h3>
+                        <p class="use-case-description">Analyze bacterial communities in the body to understand health and disease states.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use sequencing data and apply diversity analysis</li>
+                            <li>Build classification models to distinguish healthy from diseased microbiomes</li>
+                            <li>50-80% accuracy in predicting disease risk and treatment response</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How does gut microbiome composition relate to immune system function?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Microbiome analysis interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🎯</div>
+                        <h3 class="use-case-title">Cancer Genomics and Treatment Optimization</h3>
+                        <p class="use-case-description">Analyze tumor DNA to predict cancer progression and optimal treatments.</p>
+                        <ul class="use-case-bullets">
+                            <li>Apply mutation signature analysis and survival modeling</li>
+                            <li>Use clustering to identify cancer subtypes with different prognoses</li>
+                            <li>25-40% improvement in treatment selection and patient survival rates</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Which treatment protocol will be most effective for this tumor profile?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Cancer genomics interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🌱</div>
+                        <h3 class="use-case-title">Agricultural Crop Optimization</h3>
+                        <p class="use-case-description">Improve crop yields and resistance by analyzing plant genomic data.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use genome-wide association studies to link genes to traits</li>
+                            <li>Build prediction models for crop performance under different conditions</li>
+                            <li>10-30% increase in crop yields and 20-50% reduction in pesticide use</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Which genetic markers predict drought resistance in wheat varieties?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Agricultural optimization interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">📊</div>
+                        <h3 class="use-case-title">Epidemiological Modeling and Disease Surveillance</h3>
+                        <p class="use-case-description">Track disease outbreaks and predict their spread through populations.</p>
+                        <ul class="use-case-bullets">
+                            <li>Build compartmental models using differential equations</li>
+                            <li>Apply network analysis to understand disease transmission pathways</li>
+                            <li>40-70% improvement in outbreak response time and resource allocation</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How will this infectious disease spread based on current transmission patterns?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Epidemiological modeling interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🌳</div>
+                        <h3 class="use-case-title">Evolutionary Biology and Phylogenetic Analysis</h3>
+                        <p class="use-case-description">Understand how species evolved and predict future evolutionary changes.</p>
+                        <ul class="use-case-bullets">
+                            <li>Build phylogenetic trees using maximum likelihood methods</li>
+                            <li>Apply molecular clock analysis to estimate divergence times</li>
+                            <li>Critical for vaccine development and understanding pathogen evolution</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How are these viral strains related and which mutations are spreading?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Phylogenetic analysis interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🔍</div>
+                        <h3 class="use-case-title">Biomarker Discovery for Clinical Diagnostics</h3>
+                        <p class="use-case-description">Identify biological molecules that can diagnose diseases or predict treatment outcomes.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use mass spectrometry data and apply feature selection algorithms</li>
+                            <li>Build classification models to distinguish disease states</li>
+                            <li>50-90% improvement in diagnostic accuracy and 30-60% reduction in testing costs</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Which protein markers best predict Alzheimer's disease progression?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Biomarker discovery interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🔬</div>
+                        <h3 class="use-case-title">Single-Cell Analysis for Cellular Understanding</h3>
+                        <p class="use-case-description">Analyze individual cells to understand cellular diversity and disease mechanisms.</p>
+                        <ul class="use-case-bullets">
+                            <li>Apply dimensionality reduction to single-cell RNA-seq data</li>
+                            <li>Use clustering algorithms to identify cell types and states</li>
+                            <li>Revolutionary insights into cellular mechanisms enabling new therapeutic approaches</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "What cell types are present in this tumor and how do they interact?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Single-cell analysis interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🌍</div>
+                        <h3 class="use-case-title">Ecological Monitoring and Conservation</h3>
+                        <p class="use-case-description">Monitor ecosystem health and predict environmental changes using biological data.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use species abundance data and apply community ecology models</li>
+                            <li>Build biodiversity prediction models using environmental variables</li>
+                            <li>40-80% improvement in conservation strategy effectiveness and ecosystem management</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How will climate change affect biodiversity in this ecosystem?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Ecological monitoring interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">⚙️</div>
+                        <h3 class="use-case-title">Synthetic Biology Design and Optimization</h3>
+                        <p class="use-case-description">Design new biological systems and organisms for specific purposes.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use computational modeling to design genetic circuits</li>
+                            <li>Apply optimization algorithms to improve biological pathway efficiency</li>
+                            <li>50-200% improvement in biomanufacturing efficiency and novel product development</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How can we engineer bacteria to produce this pharmaceutical compound efficiently?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Synthetic biology interface
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="demo-container">
+                <div class="demo-content">
+                    <h2>From Biological Data to Scientific Breakthroughs</h2>
+                    <p>See how researchers apply advanced computational methods to accelerate discovery and advance biological understanding.</p>
+                    
+                    <ul class="demo-steps">
+                        <li>
+                            <div class="step-number">1</div>
+                            <div>Connect your biological data (genomics, proteomics, imaging)</div>
+                        </li>
+                        <li>
+                            <div class="step-number">2</div>
+                            <div>Ask research questions in plain English</div>
+                        </li>
+                        <li>
+                            <div class="step-number">3</div>
+                            <div>Get clear insights with statistical validation</div>
+                        </li>
+                        <li>
+                            <div class="step-number">4</div>
+                            <div>Take action to advance your research and discoveries</div>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="cta-button">Try Interactive Demo</a>
+                </div>
+
+                <div class="demo-visual">
+                    <div class="demo-mockup">
+                        <div style="background: #f1f5f9; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <strong>Question:</strong> "Which genes are most strongly associated with treatment resistance?"
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left;">
+                            <div>
+                                <strong>BRCA1 Gene</strong><br>
+                                <span style="color: #ef4444;">p-value: 2.3e-8</span><br>
+                                <small>Highly significant association</small>
+                            </div>
+                            <div>
+                                <strong>TP53 Gene</strong><br>
+                                <span style="color: #f59e0b;">p-value: 4.1e-6</span><br>
+                                <small>Significant association</small>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; padding: 1rem; background: #dbeafe; border-radius: 8px;">
+                            <strong>💡 Insight:</strong> Focus drug development on pathways involving these resistance genes.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Researchers Choose Julius</h2>
+                <p class="section-subtitle">Advanced computational biology tools with built-in statistical validation and publication-ready analysis workflows</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚀</div>
+                    <h3 class="benefit-title">Advanced Bioinformatics Methods</h3>
+                    <p class="benefit-description">Access sophisticated computational biology algorithms including machine learning, statistical genomics, and systems biology approaches.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📋</div>
+                    <h3 class="benefit-title">Publication-Ready Analysis</h3>
+                    <p class="benefit-description">Generate statistically validated results with publication-quality figures and detailed methodology reports.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔗</div>
+                    <h3 class="benefit-title">Works With Your Biological Data</h3>
+                    <p class="benefit-description">Analyze any data source: sequencing files, proteomics, imaging data, clinical records, laboratory databases.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3 class="benefit-title">Accelerated Discovery</h3>
+                    <p class="benefit-description">Get insights in hours, not months. Advance your research based on current data and validated methodologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Accelerate Your Biological Research</h2>
+            <p>Join researchers using advanced computational methods to drive biological discovery and scientific innovation</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="cta-primary">Start Free Trial</a>
+                <a href="#" class="cta-secondary">Book Research Demo</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julius.ai Use Case Pages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #007bff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .use-cases {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 60px;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .use-case-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: #007bff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .card-audience {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #007bff;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .cta-section {
+            background: #f8f9fa;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Julius.ai</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Julius.ai Use Case Pages</h1>
+            <p>Industry-specific analytics solutions without the data science team</p>
+        </div>
+    </section>
+
+    <section class="use-cases">
+        <div class="container">
+            <h2 class="section-title">Explore Use Cases by Industry</h2>
+            <p class="section-subtitle">Choose your industry to see how Julius.ai can transform your data analysis</p>
+            
+            <div class="use-cases-grid">
+                <a href="marketing-usecase.html" class="use-case-card">
+                    <div class="card-icon">📊</div>
+                    <h3 class="card-title">Marketing Analytics</h3>
+                    <p class="card-description">Customer segmentation, ad optimization, pricing strategies, and churn prediction for marketing teams.</p>
+                    <span class="card-audience">For Marketing Executives</span>
+                </a>
+
+                <a href="finance-usecase.html" class="use-case-card">
+                    <div class="card-icon">💰</div>
+                    <h3 class="card-title">Finance Analytics</h3>
+                    <p class="card-description">Risk assessment, portfolio optimization, fraud detection, and financial forecasting for finance leaders.</p>
+                    <span class="card-audience">For Finance Teams</span>
+                </a>
+
+                <a href="product-usecase.html" class="use-case-card">
+                    <div class="card-icon">🚀</div>
+                    <h3 class="card-title">Product Analytics</h3>
+                    <p class="card-description">A/B testing, user funnel optimization, feature analysis, and performance monitoring for product teams.</p>
+                    <span class="card-audience">For Product Managers</span>
+                </a>
+
+                <a href="sales-usecase.html" class="use-case-card">
+                    <div class="card-icon">📈</div>
+                    <h3 class="card-title">Sales Analytics</h3>
+                    <p class="card-description">Lead scoring, sales forecasting, territory optimization, and performance analytics for sales teams.</p>
+                    <span class="card-audience">For Sales Teams</span>
+                </a>
+
+                <a href="biology-usecase.html" class="use-case-card">
+                    <div class="card-icon">🧬</div>
+                    <h3 class="card-title">Biology Research</h3>
+                    <p class="card-description">Gene expression analysis, drug discovery, protein structure prediction, and genomic research for scientists.</p>
+                    <span class="card-audience">For Researchers</span>
+                </a>
+
+                <a href="physics-usecase.html" class="use-case-card">
+                    <div class="card-icon">⚛️</div>
+                    <h3 class="card-title">Physics Research</h3>
+                    <p class="card-description">Particle physics, astrophysical data mining, climate modeling, and quantum system analysis for physicists.</p>
+                    <span class="card-audience">For Physicists</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p style="margin-bottom: 30px;">Try Julius.ai for your industry-specific analytics needs</p>
+            <a href="https://julius.ai" class="cta-button">Start Free Trial</a>
+            <a href="https://julius.ai/demo" class="cta-button" style="background: transparent; color: #007bff; border: 2px solid #007bff;">Book a Demo</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Julius.ai. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

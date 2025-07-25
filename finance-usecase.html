@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Analysis Without the Data Science Team | Julius AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.4;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007bff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .cta-button {
+            background: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #64748b;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .use-case-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .use-case-card {
+            background: #ffffff;
+            border-radius: 0.5rem;
+            padding: 3rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .use-case-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #007bff;
+        }
+
+        .use-case-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .use-case-icon {
+            width: 48px;
+            height: 48px;
+            background: #007bff;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .use-case-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-description {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .use-case-bullets {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .use-case-bullets li {
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .use-case-bullets li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .use-case-example {
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            border-left: 3px solid #007bff;
+            font-style: italic;
+            color: #4b5563;
+            margin-top: 1.5rem;
+        }
+
+        .use-case-screenshot {
+            background: #f8fafc;
+            border: 2px dashed #d1d5db;
+            border-radius: 0.5rem;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Interactive Demo Section */
+        .demo-section {
+            padding: 5rem 0;
+            background: #1e293b;
+            color: white;
+        }
+
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .demo-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-content p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .demo-steps {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .demo-steps li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background: #007bff;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .demo-visual {
+            background: #334155;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .demo-mockup {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: #1e293b;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 5rem 0;
+            background: #007bff;
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: white;
+            color: #007bff;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: #007bff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .demo-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .use-case-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .use-case-screenshot {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">Julius</div>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link">Product</a></li>
+                    <li><a href="#" class="nav-link">Use Cases</a></li>
+                    <li><a href="#" class="nav-link">Pricing</a></li>
+                    <li><a href="#" class="nav-link">Resources</a></li>
+                </ul>
+                <a href="#" class="cta-button">Get Started Free</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Financial Analysis Without the Data Science Team</h1>
+            <p class="hero-subtitle">Transform your financial data into clear business insights. Get the analysis your board expects without the technical complexity.</p>
+            <a href="#" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Start Free Trial</a>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">💎</div>
+                        <h3 class="use-case-title">Customer Lifetime Value Prediction</h3>
+                        <p class="use-case-description">Calculate the total profit each customer will generate over their entire relationship with your business.</p>
+                        <ul class="use-case-bullets">
+                            <li>Predict customer lifespan and future transaction volumes</li>
+                            <li>Factor in acquisition costs, service costs, and cross-selling opportunities</li>
+                            <li>25-40% improvement in customer acquisition ROI</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Which customers will be most valuable over the next 5 years?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Customer lifetime value interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">⚠️</div>
+                        <h3 class="use-case-title">Predict Customer Default Risk</h3>
+                        <p class="use-case-description">Calculate the probability each customer will miss loan payments or default on their obligations.</p>
+                        <ul class="use-case-bullets">
+                            <li>Analyze income, debt ratios, credit history, and payment patterns</li>
+                            <li>Generate default probability scores for each customer</li>
+                            <li>20-40% reduction in bad debt losses through better lending decisions</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "What's the default risk for our current loan portfolio?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Default risk prediction interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">📈</div>
+                        <h3 class="use-case-title">Algorithmic Trading Strategy Development</h3>
+                        <p class="use-case-description">Create automated systems that buy and sell securities based on data patterns and market signals.</p>
+                        <ul class="use-case-bullets">
+                            <li>Build models using price, volume, earnings, and news sentiment data</li>
+                            <li>Backtest strategies with historical data and transaction costs</li>
+                            <li>Generate alpha of 2-8% annually above market returns</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Which trading strategies would have performed best in the last 5 years?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Trading strategy interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🛡️</div>
+                        <h3 class="use-case-title">Real-Time Fraud Detection</h3>
+                        <p class="use-case-description">Flag suspicious transactions as they happen to prevent losses while maintaining customer experience.</p>
+                        <ul class="use-case-bullets">
+                            <li>Analyze transaction patterns, amounts, locations, and timing</li>
+                            <li>Detect unusual behavior with real-time scoring</li>
+                            <li>60-90% reduction in fraud losses while maintaining customer experience</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Is this transaction pattern suspicious or normal for this customer?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Fraud detection interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🎯</div>
+                        <h3 class="use-case-title">Dynamic Portfolio Optimization</h3>
+                        <p class="use-case-description">Automatically rebalance investment portfolios based on changing market conditions and risk factors.</p>
+                        <ul class="use-case-bullets">
+                            <li>Predict asset returns and volatility using market data</li>
+                            <li>Apply risk parity and factor-based allocation models</li>
+                            <li>1-3% annual improvement in risk-adjusted returns</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How should I rebalance my portfolio given current market conditions?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Portfolio optimization interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">📊</div>
+                        <h3 class="use-case-title">Credit Scoring for Alternative Data</h3>
+                        <p class="use-case-description">Assess creditworthiness using non-traditional data sources to expand lending opportunities.</p>
+                        <ul class="use-case-bullets">
+                            <li>Analyze transaction patterns, location data, and digital behavior</li>
+                            <li>Combine traditional and alternative data for better decisions</li>
+                            <li>Expand lending to 20-40% more customers while maintaining risk levels</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Can we safely lend to customers with limited credit history?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Alternative credit scoring interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">📋</div>
+                        <h3 class="use-case-title">Automated Financial Report Analysis</h3>
+                        <p class="use-case-description">Extract insights from financial statements and earnings calls automatically to save time and improve accuracy.</p>
+                        <ul class="use-case-bullets">
+                            <li>Digitize and analyze financial documents automatically</li>
+                            <li>Identify accounting anomalies and earnings management patterns</li>
+                            <li>70-90% reduction in analysis time with improved accuracy</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Analyze these 50 companies' financial statements and flag any red flags"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Financial report analysis interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">⚡</div>
+                        <h3 class="use-case-title">Market Microstructure Prediction</h3>
+                        <p class="use-case-description">Predict short-term price movements based on order book dynamics and trading patterns.</p>
+                        <ul class="use-case-bullets">
+                            <li>Analyze bid/ask spreads, order flows, and trading volume</li>
+                            <li>Optimize trade execution timing and minimize market impact</li>
+                            <li>10-50 basis points improvement in execution costs</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "When is the best time to execute this large trade order?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Market microstructure interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">📄</div>
+                        <h3 class="use-case-title">Insurance Claims Processing Automation</h3>
+                        <p class="use-case-description">Automatically process and price insurance claims using AI to analyze photos and documents.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use computer vision to analyze damage photos and medical images</li>
+                            <li>Predict claim severity and fraud likelihood automatically</li>
+                            <li>50-80% reduction in processing time and 15-30% cost savings</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How much should we pay for this auto insurance claim?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Claims processing interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🤖</div>
+                        <h3 class="use-case-title">Robo-Advisory Portfolio Management</h3>
+                        <p class="use-case-description">Provide automated investment advice based on client goals, risk tolerance, and market conditions.</p>
+                        <ul class="use-case-bullets">
+                            <li>Build client risk profiles and optimize portfolios automatically</li>
+                            <li>Implement tax-loss harvesting and rebalancing strategies</li>
+                            <li>Serve clients with 1/10th the cost while maintaining performance</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "What's the optimal portfolio allocation for a 35-year-old saving for retirement?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Robo-advisory interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">💰</div>
+                        <h3 class="use-case-title">Regulatory Capital Optimization</h3>
+                        <p class="use-case-description">Minimize required capital while meeting all regulatory constraints and stress testing requirements.</p>
+                        <ul class="use-case-bullets">
+                            <li>Build optimization models for capital allocation decisions</li>
+                            <li>Run stress testing scenarios and monitor capital ratios</li>
+                            <li>5-15% reduction in required capital through better allocation</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How can we optimize our capital allocation to meet Basel III requirements?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Capital optimization interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">📰</div>
+                        <h3 class="use-case-title">Alternative Data Alpha Generation</h3>
+                        <p class="use-case-description">Generate investment signals from unconventional data sources like satellite imagery and social media.</p>
+                        <ul class="use-case-bullets">
+                            <li>Analyze satellite imagery, social media sentiment, and news data</li>
+                            <li>Extract unique insights not available in traditional financial data</li>
+                            <li>1-5% additional alpha through unique information sources</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "What do satellite images tell us about retail sales trends this quarter?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Alternative data interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">💧</div>
+                        <h3 class="use-case-title">Liquidity Risk Management</h3>
+                        <p class="use-case-description">Predict and manage cash flow needs across different scenarios to optimize liquidity buffers.</p>
+                        <ul class="use-case-bullets">
+                            <li>Model deposit and withdrawal patterns under stress scenarios</li>
+                            <li>Optimize liquidity buffer sizing based on risk tolerance</li>
+                            <li>20-40% reduction in excess liquidity while maintaining safety</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "How much cash should we hold to survive a bank run scenario?"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Liquidity risk interface
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="demo-container">
+                <div class="demo-content">
+                    <h2>From Financial Data to Strategic Decisions</h2>
+                    <p>See how finance leaders use analytics to make better decisions and improve financial performance without needing a data science team.</p>
+                    
+                    <ul class="demo-steps">
+                        <li>
+                            <div class="step-number">1</div>
+                            <div>Upload your financial data (statements, transactions, market data)</div>
+                        </li>
+                        <li>
+                            <div class="step-number">2</div>
+                            <div>Ask business questions in plain English</div>
+                        </li>
+                        <li>
+                            <div class="step-number">3</div>
+                            <div>Get clear answers with specific recommendations</div>
+                        </li>
+                        <li>
+                            <div class="step-number">4</div>
+                            <div>Take action to improve financial performance</div>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="cta-button">Try Interactive Demo</a>
+                </div>
+
+                <div class="demo-visual">
+                    <div class="demo-mockup">
+                        <div style="background: #f1f5f9; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <strong>Question:</strong> "Which customers have the highest default risk in our loan portfolio?"
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left;">
+                            <div>
+                                <strong>High Risk Segment</strong><br>
+                                <span style="color: #ef4444;">847 customers</span><br>
+                                <small>Default probability >15%</small>
+                            </div>
+                            <div>
+                                <strong>Medium Risk</strong><br>
+                                <span style="color: #f59e0b;">2,392 customers</span><br>
+                                <small>Default probability 5-15%</small>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; padding: 1rem; background: #dbeafe; border-radius: 8px;">
+                            <strong>💡 Recommendation:</strong> Review lending criteria for high-risk segment and consider portfolio rebalancing.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Finance Leaders Choose Julius</h2>
+                <p class="section-subtitle">Get the financial insights you need to drive performance and make strategic decisions - without the data science complexity</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚀</div>
+                    <h3 class="benefit-title">No Data Science Team Needed</h3>
+                    <p class="benefit-description">Get financial insights that typically require data scientists. Upload your data, ask questions, get answers.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📋</div>
+                    <h3 class="benefit-title">Board-Ready Analysis</h3>
+                    <p class="benefit-description">Generate reports and insights that executives and board members can understand and act on immediately.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔗</div>
+                    <h3 class="benefit-title">Works With Your Financial Data</h3>
+                    <p class="benefit-description">Upload data from any source: ERP systems, accounting software, trading platforms, databases, spreadsheets.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3 class="benefit-title">Real-Time Financial Insights</h3>
+                    <p class="benefit-description">Get analysis in minutes, not days. Make financial decisions based on current data, not outdated reports.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Start Making Better Financial Decisions</h2>
+            <p>Join finance leaders who use data to improve performance and drive growth - without the complexity</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="cta-primary">Start Free Trial</a>
+                <a href="#" class="cta-secondary">Book Finance Demo</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

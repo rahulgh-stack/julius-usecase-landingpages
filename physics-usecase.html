@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computational Physics Research using AI Data Scientist | Julius AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.4;
+            color: #1a1a1a;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #007bff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .cta-button {
+            background: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #64748b;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .use-case-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .use-case-card {
+            background: #ffffff;
+            border-radius: 0.5rem;
+            padding: 3rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .use-case-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #007bff;
+        }
+
+        .use-case-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .use-case-icon {
+            width: 48px;
+            height: 48px;
+            background: #007bff;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .use-case-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .use-case-description {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .use-case-bullets {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .use-case-bullets li {
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .use-case-bullets li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .use-case-example {
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            border-left: 3px solid #007bff;
+            font-style: italic;
+            color: #4b5563;
+            margin-top: 1.5rem;
+        }
+
+        .use-case-screenshot {
+            background: #f8fafc;
+            border: 2px dashed #d1d5db;
+            border-radius: 0.5rem;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Interactive Demo Section */
+        .demo-section {
+            padding: 5rem 0;
+            background: #1e293b;
+            color: white;
+        }
+
+        .demo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .demo-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-content p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .demo-steps {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .demo-steps li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #334155;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background: #007bff;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .demo-visual {
+            background: #334155;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .demo-mockup {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: #1e293b;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            background: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 5rem 0;
+            background: #007bff;
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            background: white;
+            color: #007bff;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2rem;
+            border: 2px solid white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: #007bff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .demo-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .use-case-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .use-case-screenshot {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">Julius</div>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link">Product</a></li>
+                    <li><a href="#" class="nav-link">Use Cases</a></li>
+                    <li><a href="#" class="nav-link">Pricing</a></li>
+                    <li><a href="#" class="nav-link">Resources</a></li>
+                </ul>
+                <a href="#" class="cta-button">Get Started Free</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Computational Physics Research using AI Data Scientist</h1>
+            <p class="hero-subtitle">Apply advanced machine learning and statistical methods to accelerate physics discoveries. From particle collisions to cosmic phenomena.</p>
+            <a href="#" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Start Free Trial</a>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="use-case-grid">
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">⚛️</div>
+                        <h3 class="use-case-title">Particle Physics Data Analysis</h3>
+                        <p class="use-case-description">Analyze collision data from particle accelerators to discover new particles and understand fundamental forces.</p>
+                        <ul class="use-case-bullets">
+                            <li>Apply event reconstruction algorithms to identify particle tracks</li>
+                            <li>Use machine learning classification to distinguish signal from background</li>
+                            <li>Discovery of fundamental particles like the Higgs boson and validation of physics theories</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Identify Higgs boson decay signatures in LHC collision data"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Particle physics analysis interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🌌</div>
+                        <h3 class="use-case-title">Astrophysical Data Mining</h3>
+                        <p class="use-case-description">Process telescope data to discover celestial objects and understand cosmic phenomena.</p>
+                        <ul class="use-case-bullets">
+                            <li>Apply computer vision to astronomical images for object detection</li>
+                            <li>Use time series analysis to detect periodic signals from pulsars</li>
+                            <li>Discovery of exoplanets, gravitational waves, and understanding of dark matter/energy</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Classify galaxy types from Hubble Space Telescope imaging data"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Astrophysical data mining interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🌡️</div>
+                        <h3 class="use-case-title">Climate and Weather Modeling</h3>
+                        <p class="use-case-description">Predict weather patterns and climate change using atmospheric and oceanic data.</p>
+                        <ul class="use-case-bullets">
+                            <li>Build numerical weather prediction models using differential equations</li>
+                            <li>Apply machine learning to satellite data for weather forecasting</li>
+                            <li>Improved weather forecasts saving billions in agriculture and disaster prevention</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Predict hurricane intensity using satellite imagery and atmospheric data"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Climate modeling interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🔬</div>
+                        <h3 class="use-case-title">Materials Science Discovery</h3>
+                        <p class="use-case-description">Predict properties of new materials and optimize existing ones using computational methods.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use density functional theory calculations with machine learning</li>
+                            <li>Apply neural networks to predict material properties from atomic structure</li>
+                            <li>Accelerated development of semiconductors, batteries, and superconductors</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Design high-temperature superconducting materials using AI-guided optimization"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Materials discovery interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">⚡</div>
+                        <h3 class="use-case-title">Quantum System Analysis</h3>
+                        <p class="use-case-description">Understand and control quantum systems for computing and sensing applications.</p>
+                        <ul class="use-case-bullets">
+                            <li>Apply machine learning to quantum state tomography data</li>
+                            <li>Use reinforcement learning for quantum control optimization</li>
+                            <li>Development of quantum computers and ultra-sensitive quantum sensors</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Optimize quantum gate fidelity using reinforcement learning control"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Quantum system analysis interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">☢️</div>
+                        <h3 class="use-case-title">Nuclear Physics and Reactor Monitoring</h3>
+                        <p class="use-case-description">Monitor nuclear reactions and predict reactor behavior for safety and efficiency.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use time series analysis on radiation detector data</li>
+                            <li>Apply anomaly detection to identify unusual reactor conditions</li>
+                            <li>Improved nuclear safety and efficiency in power generation</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Detect reactor anomalies using real-time neutron flux monitoring"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Nuclear monitoring interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🔥</div>
+                        <h3 class="use-case-title">Plasma Physics and Fusion Research</h3>
+                        <p class="use-case-description">Control plasma behavior to achieve controlled nuclear fusion for clean energy.</p>
+                        <ul class="use-case-bullets">
+                            <li>Apply real-time control algorithms to magnetic confinement systems</li>
+                            <li>Use machine learning to predict plasma instabilities</li>
+                            <li>Progress toward clean, unlimited fusion energy</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Predict tokamak disruptions using plasma diagnostic data"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Plasma physics interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🌊</div>
+                        <h3 class="use-case-title">Gravitational Wave Detection</h3>
+                        <p class="use-case-description">Identify ripples in spacetime caused by massive cosmic events.</p>
+                        <ul class="use-case-bullets">
+                            <li>Apply advanced signal processing to filter detector noise</li>
+                            <li>Use matched filtering techniques to identify wave signatures</li>
+                            <li>Revolutionary new way to study the universe and test general relativity</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Detect black hole mergers from LIGO interferometer data"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Gravitational wave detection interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">💨</div>
+                        <h3 class="use-case-title">Computational Fluid Dynamics</h3>
+                        <p class="use-case-description">Simulate fluid flow for engineering applications and fundamental research.</p>
+                        <ul class="use-case-bullets">
+                            <li>Solve Navier-Stokes equations using numerical methods</li>
+                            <li>Apply machine learning to accelerate fluid simulations</li>
+                            <li>Improved aircraft design, weather prediction, and industrial processes</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Optimize airfoil design using ML-accelerated CFD simulations"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - CFD simulation interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🔮</div>
+                        <h3 class="use-case-title">Condensed Matter Physics Simulations</h3>
+                        <p class="use-case-description">Understand properties of solid materials at the atomic level.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use molecular dynamics simulations to model atomic interactions</li>
+                            <li>Apply Monte Carlo methods to study phase transitions</li>
+                            <li>Development of new electronic devices and advanced materials</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Simulate electronic band structure of novel 2D materials"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Condensed matter simulation interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">💡</div>
+                        <h3 class="use-case-title">Optics and Photonics Optimization</h3>
+                        <p class="use-case-description">Design optical systems and understand light-matter interactions.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use electromagnetic field simulations to design optical devices</li>
+                            <li>Apply optimization algorithms to improve laser performance</li>
+                            <li>Improved telecommunications, medical imaging, and laser technology</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Design metamaterial structures for enhanced optical properties"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Optics optimization interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🏥</div>
+                        <h3 class="use-case-title">Biophysics and Medical Physics</h3>
+                        <p class="use-case-description">Apply physics principles to understand biological systems and medical treatments.</p>
+                        <ul class="use-case-bullets">
+                            <li>Use image reconstruction algorithms for medical imaging</li>
+                            <li>Apply Monte Carlo simulations for radiation therapy planning</li>
+                            <li>Better medical diagnostics and more effective cancer treatments</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Optimize radiation dose distribution for tumor treatment"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Medical physics interface
+                    </div>
+                </div>
+
+                <div class="use-case-card">
+                    <div class="use-case-content">
+                        <div class="use-case-icon">🚀</div>
+                        <h3 class="use-case-title">Cosmic Ray Detection and Analysis</h3>
+                        <p class="use-case-description">Study high-energy particles from space to understand cosmic phenomena.</p>
+                        <ul class="use-case-bullets">
+                            <li>Apply particle tracking algorithms to cosmic ray detector data</li>
+                            <li>Use statistical analysis to study energy distributions</li>
+                            <li>Understanding of cosmic accelerators and space weather effects</li>
+                        </ul>
+                        <div class="use-case-example">
+                            "Identify ultra-high-energy cosmic ray sources using shower data"
+                        </div>
+                    </div>
+                    <div class="use-case-screenshot">
+                        Screenshot placeholder - Cosmic ray analysis interface
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section class="demo-section">
+        <div class="container">
+            <div class="demo-container">
+                <div class="demo-content">
+                    <h2>From Physics Data to Scientific Breakthroughs</h2>
+                    <p>See how physicists apply advanced computational methods to unlock fundamental insights about the universe.</p>
+                    
+                    <ul class="demo-steps">
+                        <li>
+                            <div class="step-number">1</div>
+                            <div>Connect your physics data (experimental, simulation, observational)</div>
+                        </li>
+                        <li>
+                            <div class="step-number">2</div>
+                            <div>Apply advanced analytical methods and statistical tests</div>
+                        </li>
+                        <li>
+                            <div class="step-number">3</div>
+                            <div>Extract physical insights with rigorous uncertainty quantification</div>
+                        </li>
+                        <li>
+                            <div class="step-number">4</div>
+                            <div>Advance fundamental understanding and technological applications</div>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="cta-button">Try Interactive Demo</a>
+                </div>
+
+                <div class="demo-visual">
+                    <div class="demo-mockup">
+                        <div style="background: #f1f5f9; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <strong>Analysis:</strong> "Identify particle decay signatures in detector data"
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left;">
+                            <div>
+                                <strong>Signal Events</strong><br>
+                                <span style="color: #10b981;">2,847 candidates</span><br>
+                                <small>5.2σ significance</small>
+                            </div>
+                            <div>
+                                <strong>Background</strong><br>
+                                <span style="color: #f59e0b;">12,392 events</span><br>
+                                <small>Well-modeled distribution</small>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; padding: 1rem; background: #dbeafe; border-radius: 8px;">
+                            <strong>🎯 Discovery:</strong> New particle candidate detected with high statistical confidence.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Physicists Choose Julius</h2>
+                <p class="section-subtitle">Advanced computational physics tools with integrated statistical analysis and theoretical modeling capabilities</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚀</div>
+                    <h3 class="benefit-title">Advanced Physics Algorithms</h3>
+                    <p class="benefit-description">Access sophisticated computational methods including Monte Carlo, finite element analysis, and machine learning for physics.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📋</div>
+                    <h3 class="benefit-title">Publication-Ready Results</h3>
+                    <p class="benefit-description">Generate rigorous statistical analysis with uncertainty quantification and publication-quality visualizations.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔗</div>
+                    <h3 class="benefit-title">Works With Physics Data</h3>
+                    <p class="benefit-description">Analyze any physics data: detector outputs, simulation results, telescope observations, experimental measurements.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">⏱️</div>
+                    <h3 class="benefit-title">Accelerated Discovery</h3>
+                    <p class="benefit-description">Process large-scale physics datasets in real-time with automated pattern recognition and anomaly detection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Accelerate Your Physics Research</h2>
+            <p>Join physicists using advanced computational methods to unlock the secrets of the universe</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="cta-primary">Start Free Trial</a>
+                <a href="#" class="cta-secondary">Book Physics Demo</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
